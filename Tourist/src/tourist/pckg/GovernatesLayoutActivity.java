@@ -26,6 +26,23 @@ public class GovernatesLayoutActivity extends Activity {
 	private PlacesSQLiteAdapter governatesSQLiteAdapter;
 	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
