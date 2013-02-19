@@ -1,0 +1,30 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Gallery
+        android:id="@+id/Gallery01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.10"
+        android:gravity="center|fill_vertical" />
+
+    
+    <Button
+        android:id="@+id/btnPlaceName"
+       android:onClick="onBtnClicked"
+        android:text="Pyramids" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.33"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="1dp"
+        android:text="Egypt is one of the most populous countries in Africa and the Middle East, and the 15th most populated in the world. The great majority of its over 82 million people[4] live near the banks of the Nile River." />
+
+   
+</TableLayout>
