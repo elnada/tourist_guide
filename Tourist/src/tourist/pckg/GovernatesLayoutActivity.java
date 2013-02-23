@@ -3,9 +3,8 @@ package tourist.pckg;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 
-import dataBase.pckg.GovernatesSQLiteAdapter;
-import dataBase.pckg.GovernatesImageSQLiteAdapter;
-import dataBase.pckg.PlacesSQLiteAdapter;
+
+import dataBase.pckg.Tourist_DB;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.ListActivity;
@@ -23,25 +22,7 @@ import android.widget.ListView;
 
 public class GovernatesLayoutActivity extends Activity {
 
-	private PlacesSQLiteAdapter governatesSQLiteAdapter;
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	private Tourist_DB touristDB;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -54,50 +35,50 @@ public class GovernatesLayoutActivity extends Activity {
 		 * Create/Open a SQLite database and fill with dummy content and close
 		 * it
 		 */
-		governatesSQLiteAdapter = new PlacesSQLiteAdapter(this);
-		governatesSQLiteAdapter.openToWrite();
-		governatesSQLiteAdapter.deleteAll();
+		touristDB = new Tourist_DB(this);
+		touristDB.openToWrite();
+		touristDB.deleteGovernates();
 
-		governatesSQLiteAdapter.addGovernateEntry(1,"Alexandria");
-		governatesSQLiteAdapter.addGovernateEntry(2,"Aswan");
-		governatesSQLiteAdapter.addGovernateEntry(3,"Asyut");
-		governatesSQLiteAdapter.addGovernateEntry(4,"Beheira");
-		governatesSQLiteAdapter.addGovernateEntry(5,"Beni Suef");
-		governatesSQLiteAdapter.addGovernateEntry(6,"Cairo");
-		governatesSQLiteAdapter.addGovernateEntry(7,"Dakahlia");
-		governatesSQLiteAdapter.addGovernateEntry(8,"Damietta");
-		governatesSQLiteAdapter.addGovernateEntry(9,"Faiyum");
-		governatesSQLiteAdapter.addGovernateEntry(10,"Gharbia");
-		governatesSQLiteAdapter.addGovernateEntry(11,"Giza");
-		governatesSQLiteAdapter.addGovernateEntry(12,"Ismailia");
-		governatesSQLiteAdapter.addGovernateEntry(13,"Kafr el-Sheikh	");
-		governatesSQLiteAdapter.addGovernateEntry(14,"Matruh");
-		governatesSQLiteAdapter.addGovernateEntry(15,"Minya");
-		governatesSQLiteAdapter.addGovernateEntry(16,"Monufia");
-		governatesSQLiteAdapter.addGovernateEntry(17,"New Valley");
-		governatesSQLiteAdapter.addGovernateEntry(18,"North Sinai");
-		governatesSQLiteAdapter.addGovernateEntry(19,"Port Said");
-		governatesSQLiteAdapter.addGovernateEntry(20,"Qalyubia");
-		governatesSQLiteAdapter.addGovernateEntry(21,"UQena");
-		governatesSQLiteAdapter.addGovernateEntry(22,"Red Sea");
-		governatesSQLiteAdapter.addGovernateEntry(23,"Al Sharqia");
-		governatesSQLiteAdapter.addGovernateEntry(24,"Sohag");
-		governatesSQLiteAdapter.addGovernateEntry(25,"South Sinai");
-		governatesSQLiteAdapter.addGovernateEntry(26,"Suez");
-		governatesSQLiteAdapter.addGovernateEntry(27,"Luxor");
+		touristDB.addGovernateEntry(1,"Alexandria");
+		touristDB.addGovernateEntry(2,"Aswan");
+		touristDB.addGovernateEntry(3,"Asyut");
+		touristDB.addGovernateEntry(4,"Beheira");
+		touristDB.addGovernateEntry(5,"Beni Suef");
+		touristDB.addGovernateEntry(6,"Cairo");
+		touristDB.addGovernateEntry(7,"Dakahlia");
+		touristDB.addGovernateEntry(8,"Damietta");
+		touristDB.addGovernateEntry(9,"Faiyum");
+		touristDB.addGovernateEntry(10,"Gharbia");
+		touristDB.addGovernateEntry(11,"Giza");
+		touristDB.addGovernateEntry(12,"Ismailia");
+		touristDB.addGovernateEntry(13,"Kafr el-Sheikh	");
+		touristDB.addGovernateEntry(14,"Matruh");
+		touristDB.addGovernateEntry(15,"Minya");
+		touristDB.addGovernateEntry(16,"Monufia");
+		touristDB.addGovernateEntry(17,"New Valley");
+		touristDB.addGovernateEntry(18,"North Sinai");
+		touristDB.addGovernateEntry(19,"Port Said");
+		touristDB.addGovernateEntry(20,"Qalyubia");
+		touristDB.addGovernateEntry(21,"UQena");
+		touristDB.addGovernateEntry(22,"Red Sea");
+		touristDB.addGovernateEntry(23,"Al Sharqia");
+		touristDB.addGovernateEntry(24,"Sohag");
+		touristDB.addGovernateEntry(25,"South Sinai");
+		touristDB.addGovernateEntry(26,"Suez");
+		touristDB.addGovernateEntry(27,"Luxor");
 
-		governatesSQLiteAdapter.close();
+		touristDB.close();
 
 		/*
 		 * Open the same SQLite database and read all it's content.
 		 */
-		governatesSQLiteAdapter = new PlacesSQLiteAdapter(this);
-		governatesSQLiteAdapter.openToRead();
+		touristDB = new Tourist_DB(this);
+		touristDB.openToRead();
 
-		Cursor cursor = governatesSQLiteAdapter.queueAll();
+		Cursor cursor = touristDB.GovernateRow();
 		startManagingCursor(cursor);
 
-		String[] from = new String[] { PlacesSQLiteAdapter.KEY_CONTENT };
+		String[] from = new String[] { Tourist_DB.KEY_GOVERNATES_NAME };
 		int[] to = new int[] { R.id.text };
 
 		SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this,
@@ -105,7 +86,7 @@ public class GovernatesLayoutActivity extends Activity {
 
 		listContent.setAdapter(cursorAdapter);
 
-		governatesSQLiteAdapter.close();
+		touristDB.close();
 		 
 		// store image in DB
 //		 GovernatesImageSQLiteAdapter db=new GovernatesImageSQLiteAdapter(this);
